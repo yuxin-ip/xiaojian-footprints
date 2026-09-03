@@ -18,7 +18,7 @@ export const bilibiliSpaceUrl = 'https://space.bilibili.com/347880162';
 export const bilibiliCollections: BilibiliCollection[] = [
   {
     slug: 'exam-results',
-    name: '合集·up主考试查分',
+    name: 'up主考试查分',
     bvids: ['BV1NN4y1g7Qo', 'BV1kJ411Q727']
   },
   {
