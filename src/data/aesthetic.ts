@@ -132,9 +132,9 @@ export const aestheticPhotos: AestheticPhoto[] = [
     location: '南京 · 中山陵',
     subject: '南京理工大学',
     subjectLabel: '远望',
-    dateLabel: '2026年9月1日',
-    sortDate: '2026-09-01',
-    equipment: null,
+    dateLabel: '2026年9月1日 15:57:28',
+    sortDate: '2026-09-01T15:57:28',
+    equipment: 'Nikon Z5II + NIKKOR Z 24-200mm f/4-6.3 VR',
     quote: '开学后，登上中山陵，眺望南京理工大学。',
     collectionSlugs: []
   },
@@ -143,9 +143,9 @@ export const aestheticPhotos: AestheticPhoto[] = [
     filename: '2026-wuxi-northern-grey-flycatcher.jpg',
     location: '无锡',
     subject: '北灰鹟',
-    dateLabel: '2026年9月1日',
-    sortDate: '2026-09-01',
-    equipment: null,
+    dateLabel: '2026年8月27日 09:46:21',
+    sortDate: '2026-08-27T09:46:21',
+    equipment: 'Panasonic Lumix DMC-GH4 + Panasonic Lumix G Vario 100-300mm f/4-5.6 II POWER O.I.S.',
     quote: '欢迎北灰鹟经过无锡！',
     collectionSlugs: ['birding']
   }

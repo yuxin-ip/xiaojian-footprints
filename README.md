@@ -17,6 +17,10 @@ npm run build
 
 构建产物会输出到 `dist/`。
 
+## 添加摄影作品
+
+新增照片时，请先读取原图 EXIF 的 `DateTimeOriginal`、相机机身与镜头信息，并将精确拍摄时间和器材写入 `src/data/aesthetic.ts`；不要以文件夹名或导出时间代替拍摄时间。
+
 ## 发布到 Vercel
 
 推荐发布方式：

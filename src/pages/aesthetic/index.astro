@@ -4,47 +4,21 @@ import Layout from '../../layouts/Layout.astro';
 import { aestheticCollections, aestheticPhotos, getAestheticPhotosForCollection } from '../../data/aesthetic';
 import { withBase } from '../../utils/paths';
 
-const newestFirst = (photos: typeof aestheticPhotos) => [...photos].sort((a, b) => b.sortDate.localeCompare(a.sortDate));
-const collectionPreviews = aestheticCollections.map((collection) => ({
-  collection,
-  photos: newestFirst(getAestheticPhotosForCollection(collection.slug)).slice(0, 3),
-  count: getAestheticPhotosForCollection(collection.slug).length
-}));
-const allPhotos = newestFirst(aestheticPhotos);
+const allPhotos = [...aestheticPhotos].sort((a, b) => b.sortDate.localeCompare(a.sortDate));
 ---
-<Layout title="美的历程 | 小謇的足迹" description="小謇的摄影作品，以地点、主题与时间留存行走和鸟鸣。">
+<Layout title="美的历程 | 小謇的足迹" description="小謇的摄影作品。">
   <header class="page-title aesthetic-page-title">
     <p class="kicker">Photography</p>
     <h1>美的历程</h1>
-    <p>把地点、所见与拍摄时间并列记录；不必点开，也能知道这幅照片来自哪里、拍到了什么。</p>
   </header>
-
-  <div class="aesthetic-collection-list" aria-label="摄影合集">
-    {collectionPreviews.map(({ collection, photos, count }) => (
-      <section class="aesthetic-collection-preview">
-        <div class="section-header">
-          <div>
-            <p class="kicker">{collection.eyebrow}</p>
-            <h2>{collection.name}</h2>
-            <p>{collection.description}</p>
-          </div>
-          <span class="collection-count">{count} 幅</span>
-        </div>
-        <AestheticGallery photos={photos} eagerCount={0} />
-        <div class="section-action">
-          <a class="button-link primary" href={withBase(`/aesthetic/${collection.slug}/`)}>查看全部{collection.name}</a>
-        </div>
-      </section>
-    ))}
-  </div>
-
-  <section class="aesthetic-all-photos" aria-label="全部摄影作品">
-    <div class="section-header">
-      <div>
-        <p class="kicker">Archive</p>
-        <h2>全部记录</h2>
-      </div>
+  <section class="collection-strip" aria-label="摄影合集">
+    <div class="collection-strip-heading"><span class="kicker">主题合集</span><span>{aestheticPhotos.length} 幅照片</span></div>
+    <div class="collection-strip-links">
+      {aestheticCollections.map((collection) => (
+        <a class="collection-strip-link" href={withBase(`/aesthetic/${collection.slug}/`)}><strong>{collection.name}</strong><span>{getAestheticPhotosForCollection(collection.slug).length} 幅</span></a>
+      ))}
+      <a class="collection-strip-link collection-strip-all" href="#all-photos"><strong>浏览全部</strong><span aria-hidden="true">↓</span></a>
     </div>
-    <AestheticGallery photos={allPhotos} eagerCount={2} />
   </section>
+  <section class="gallery-wrap" id="all-photos" aria-label="全部摄影作品"><AestheticGallery photos={allPhotos} eagerCount={2} /></section>
 </Layout>

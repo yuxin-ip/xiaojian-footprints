@@ -1,0 +1,26 @@
+---
+import type { BilibiliVideo } from '../data/bilibili';
+
+interface Props {
+  videos: BilibiliVideo[];
+}
+
+const { videos } = Astro.props;
+const formatDate = (timestamp: number) => new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(timestamp * 1000));
+const formatPlay = (play: number) => play >= 10000 ? `${(play / 10000).toFixed(1)}万` : String(play);
+---
+<div class="video-grid">
+  {videos.map((video) => (
+    <button type="button" class="video-card" data-bvid={video.bvid} data-title={video.title} aria-label={`播放视频：${video.title}`}>
+      <span class="video-card-media">
+        <img src={video.pic} alt="" loading="lazy" referrerpolicy="no-referrer" />
+        <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M8 5v14l11-7z" /></svg></span>
+        <span class="video-duration">{video.duration}</span>
+      </span>
+      <span class="video-card-body">
+        <span class="video-card-title">{video.title}</span>
+        <span class="video-card-meta">{formatDate(video.publishedAt)} · {formatPlay(video.play)}次播放</span>
+      </span>
+    </button>
+  ))}
+</div>

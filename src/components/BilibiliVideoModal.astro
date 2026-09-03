@@ -1,0 +1,35 @@
+---
+import { bilibiliSpaceUrl } from '../data/bilibili';
+---
+<div class="video-modal" id="video-modal" aria-hidden="true">
+  <div class="video-modal-backdrop" data-close-video></div>
+  <div class="video-modal-panel" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
+    <div class="video-modal-header"><strong id="video-modal-title">视频播放</strong><button type="button" class="video-modal-close" data-close-video aria-label="关闭">×</button></div>
+    <iframe id="video-frame" src="" title="Bilibili 视频播放器" allow="fullscreen; autoplay; encrypted-media" allowfullscreen></iframe>
+    <div class="video-modal-footer"><a id="video-external" href={bilibiliSpaceUrl} target="_blank" rel="noreferrer">在 B 站打开</a></div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('video-modal');
+  const frame = document.getElementById('video-frame');
+  const modalTitle = document.getElementById('video-modal-title');
+  const externalLink = document.getElementById('video-external');
+  function openVideo(bvid, title) {
+    frame.src = 'https://player.bilibili.com/player.html?bvid=' + bvid + '&page=1&high_quality=1&danmaku=0';
+    modalTitle.textContent = title;
+    externalLink.href = 'https://www.bilibili.com/video/' + bvid;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVideo() {
+    frame.src = '';
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('[data-bvid]').forEach((card) => card.addEventListener('click', () => openVideo(card.getAttribute('data-bvid'), card.getAttribute('data-title'))));
+  document.querySelectorAll('[data-close-video]').forEach((element) => element.addEventListener('click', closeVideo));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && modal.classList.contains('is-open')) closeVideo(); });
+</script>

@@ -7,7 +7,46 @@ export type BilibiliVideo = {
   pic: string;
 };
 
+export type BilibiliCollection = {
+  slug: string;
+  name: string;
+  bvids: string[];
+};
+
 export const bilibiliSpaceUrl = 'https://space.bilibili.com/347880162';
+
+export const bilibiliCollections: BilibiliCollection[] = [
+  {
+    slug: 'exam-results',
+    name: '合集·up主考试查分',
+    bvids: ['BV1NN4y1g7Qo', 'BV1kJ411Q727']
+  },
+  {
+    slug: 'tianyi-and-class-two',
+    name: '天一实验、两班…',
+    bvids: ['BV1Ut411X7Xh', 'BV1it411S7kv', 'BV1tt41167Qo', 'BV1ks411n7t6', 'BV1uW41197rh', 'BV1fs411G71d', 'BV1Zt411p7G7']
+  },
+  {
+    slug: 'tutorials',
+    name: '认真做的教程',
+    bvids: ['BV1BE411J7Qs', 'BV1tV411f7eb', 'BV1zs411K78P', 'BV16t411x7FV']
+  },
+  {
+    slug: 'wuxi-2018-finals',
+    name: '2018无锡夏季魔方公开赛决赛视频汇总',
+    bvids: ['BV1FW411f7FD', 'BV1FW411f7PS', 'BV1DW411f7hT']
+  },
+  {
+    slug: 'football',
+    name: '足球',
+    bvids: ['BV1hK411G787', 'BV1tk4y1q7nx', 'BV1uW41197rh', 'BV1fs411G71d']
+  },
+  {
+    slug: 'cubing',
+    name: '魔方',
+    bvids: ['BV16b411w79D', 'BV16t411x7FV', 'BV1vx411o73K', 'BV1BE411J7Qs', 'BV1tV411f7eb', 'BV1R4411X7N3', 'BV1N7411r7hT', 'BV1cs411V7zL', 'BV1Es411V76N', 'BV1Xs411p7Fa', 'BV1ks411H7z7', 'BV1zs411K78P']
+  }
+];
 
 export const bilibiliVideos: BilibiliVideo[] = [
   {
@@ -386,4 +425,15 @@ export function getBilibiliUrl(bvid: string) {
 
 export function getBilibiliEmbedUrl(bvid: string) {
   return `https://player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1&danmaku=0`;
+}
+
+export function getBilibiliCollection(slug: string) {
+  const collection = bilibiliCollections.find((item) => item.slug === slug);
+  if (!collection) throw new Error(`Unknown bilibili collection: ${slug}`);
+  return collection;
+}
+
+export function getBilibiliVideosForCollection(slug: string) {
+  const collection = getBilibiliCollection(slug);
+  return bilibiliVideos.filter((video) => collection.bvids.includes(video.bvid));
 }

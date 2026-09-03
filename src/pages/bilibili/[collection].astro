@@ -1,0 +1,24 @@
+---
+import BilibiliVideoGrid from '../../components/BilibiliVideoGrid.astro';
+import BilibiliVideoModal from '../../components/BilibiliVideoModal.astro';
+import Layout from '../../layouts/Layout.astro';
+import { bilibiliCollections, getBilibiliVideosForCollection } from '../../data/bilibili';
+import { withBase } from '../../utils/paths';
+
+export function getStaticPaths() {
+  return bilibiliCollections.map((collection) => ({ params: { collection: collection.slug }, props: { collection } }));
+}
+
+const { collection } = Astro.props;
+const videos = getBilibiliVideosForCollection(collection.slug);
+---
+<Layout title={`${collection.name} | bilibili视频`} description={`${collection.name}视频合集。`}>
+  <header class="page-title bilibili-page-title">
+    <p class="kicker">Bilibili Collection</p>
+    <h1>{collection.name}</h1>
+    <p>{videos.length} 个视频</p>
+    <a class="button-link back-button" href={withBase('/bilibili/')}>← 返回 bilibili视频</a>
+  </header>
+  <section class="gallery-wrap video-page-wrap" aria-label={collection.name}><BilibiliVideoGrid videos={videos} /></section>
+  <BilibiliVideoModal />
+</Layout>

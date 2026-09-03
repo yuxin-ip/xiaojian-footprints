@@ -423,8 +423,9 @@ img {
   margin-bottom: 7px;
 }
 
-.overview-photo-tags > span,
-.photo-tag,
+.overview-photo-location,
+.photo-location,
+.photo-context,
 .photo-detail-meta > span {
   color: var(--ink);
   font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
@@ -432,8 +433,7 @@ img {
   line-height: 1.55;
 }
 
-.overview-photo-tags b,
-.photo-tag-label,
+.photo-context b,
 .photo-detail-meta b {
   margin-right: 5px;
   color: var(--green);
@@ -538,7 +538,7 @@ img {
 
 .collection-strip-links {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 10px;
 }
 
@@ -570,6 +570,23 @@ img {
   color: var(--muted);
   font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
   font-size: 13px;
+}
+
+.collection-strip-link.collection-strip-all {
+  border-color: rgba(49, 95, 135, 0.38);
+  border-style: dashed;
+  background: rgba(237, 243, 248, 0.74);
+  color: var(--blue);
+}
+
+.collection-strip-link.collection-strip-all:hover {
+  border-color: var(--blue);
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.collection-strip-link.collection-strip-all span {
+  color: var(--blue);
+  font-size: 17px;
 }
 
 .academic-page-title {
@@ -747,40 +764,6 @@ img {
   padding: 0 clamp(18px, 4vw, 56px) clamp(56px, 7vw, 90px);
 }
 
-.aesthetic-collection-list,
-.aesthetic-all-photos {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 clamp(18px, 4vw, 56px);
-}
-
-.aesthetic-collection-preview {
-  padding: 38px 0;
-  border-top: 1px solid var(--line);
-}
-
-.aesthetic-collection-preview .section-header,
-.aesthetic-all-photos .section-header {
-  margin-bottom: 20px;
-}
-
-.aesthetic-collection-preview .section-action {
-  margin-top: 20px;
-}
-
-.aesthetic-all-photos {
-  padding-top: 38px;
-  padding-bottom: clamp(56px, 7vw, 90px);
-  border-top: 1px solid var(--line);
-}
-
-.collection-count {
-  color: var(--muted);
-  font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
-  font-size: 13px;
-  white-space: nowrap;
-}
-
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -827,8 +810,53 @@ img {
   margin-bottom: 7px;
 }
 
+.photo-location,
+.photo-context {
+  display: inline-flex;
+  align-items: center;
+}
+
+.photo-subject {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px 3px 6px;
+  border: 1px solid rgba(47, 111, 88, 0.28);
+  border-radius: 999px;
+  background: rgba(238, 244, 238, 0.82);
+  color: var(--green);
+  line-height: 1.35;
+}
+
+.overview-photo-caption .photo-subject,
+.photo-tags .photo-subject,
+.photo-detail-meta .photo-subject {
+  display: inline-flex;
+}
+
+.photo-subject svg {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  fill: currentColor;
+}
+
+.photo-subject em {
+  font-family: KaiTi, STKaiti, "Kaiti SC", serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+}
+
 .photo-detail-meta {
   margin-top: 12px;
+}
+
+.photo-detail-meta time {
+  color: var(--muted);
+  font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
 }
 
 .photo-detail-wrap {
