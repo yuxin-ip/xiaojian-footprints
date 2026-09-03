@@ -396,13 +396,6 @@ img {
   padding: 14px 16px 16px;
 }
 
-.overview-photo-caption strong {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 18px;
-  line-height: 1.4;
-}
-
 .overview-photo-caption span {
   display: block;
   color: var(--muted);
@@ -416,6 +409,37 @@ img {
   justify-content: center;
   max-width: 1180px;
   margin: 24px auto 0;
+}
+
+.overview-photo-tags,
+.photo-tags,
+.photo-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 12px;
+}
+
+.overview-photo-tags {
+  margin-bottom: 7px;
+}
+
+.overview-photo-tags > span,
+.photo-tag,
+.photo-detail-meta > span {
+  color: var(--ink);
+  font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.overview-photo-tags b,
+.photo-tag-label,
+.photo-detail-meta b {
+  margin-right: 5px;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .article-card,
@@ -723,6 +747,40 @@ img {
   padding: 0 clamp(18px, 4vw, 56px) clamp(56px, 7vw, 90px);
 }
 
+.aesthetic-collection-list,
+.aesthetic-all-photos {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(18px, 4vw, 56px);
+}
+
+.aesthetic-collection-preview {
+  padding: 38px 0;
+  border-top: 1px solid var(--line);
+}
+
+.aesthetic-collection-preview .section-header,
+.aesthetic-all-photos .section-header {
+  margin-bottom: 20px;
+}
+
+.aesthetic-collection-preview .section-action {
+  margin-top: 20px;
+}
+
+.aesthetic-all-photos {
+  padding-top: 38px;
+  padding-bottom: clamp(56px, 7vw, 90px);
+  border-top: 1px solid var(--line);
+}
+
+.collection-count {
+  color: var(--muted);
+  font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -756,14 +814,6 @@ img {
   padding: 14px 16px 16px;
 }
 
-.photo-location {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--ink);
-  font-size: 18px;
-  line-height: 1.4;
-}
-
 .photo-info,
 .photo-camera {
   display: block;
@@ -771,6 +821,14 @@ img {
   font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
   font-size: 13px;
   line-height: 1.6;
+}
+
+.photo-tags {
+  margin-bottom: 7px;
+}
+
+.photo-detail-meta {
+  margin-top: 12px;
 }
 
 .photo-detail-wrap {

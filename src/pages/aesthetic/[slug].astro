@@ -11,17 +11,22 @@ export function getStaticPaths() {
 }
 
 const { photo } = Astro.props;
+const pageTitle = photo.subject ?? photo.location;
 ---
-<Layout title={`${photo.location} | 美的历程`} description={photo.quote}>
+<Layout title={`${pageTitle} | 美的历程`} description={photo.quote}>
   <header class="page-title aesthetic-page-title">
     <p class="kicker">美的历程</p>
-    <h1>{photo.location}</h1>
-    <p>{photo.dateLabel}</p>
+    <h1>{pageTitle}</h1>
+    <div class="photo-detail-meta">
+      <span><b>地点</b>{photo.location}</span>
+      {photo.subject && <span><b>{photo.subjectLabel ?? '鸟种'}</b>{photo.subject}</span>}
+      <span><b>时间</b>{photo.dateLabel}</span>
+    </div>
     <a class="button-link back-button" href={withBase('/aesthetic/')}>← 返回美的历程</a>
   </header>
   <section class="photo-detail-wrap">
     <figure class="photo-detail">
-      <img src={withBase(`/images/aesthetic/${photo.filename}`)} alt={`${photo.location} 摄影作品`} />
+      <img src={withBase(`/images/aesthetic/${photo.filename}`)} alt={`${photo.location}${photo.subject ? `，${photo.subject}` : ''} 摄影作品`} />
       <figcaption>
         <blockquote class="photo-quote">“{photo.quote}”</blockquote>
         {photo.equipment && <p class="photo-equipment">{photo.equipment}</p>}

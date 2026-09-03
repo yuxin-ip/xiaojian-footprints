@@ -1,0 +1,20 @@
+---
+import AestheticGallery from '../../components/AestheticGallery.astro';
+import Layout from '../../layouts/Layout.astro';
+import { getAestheticCollection, getAestheticPhotosForCollection } from '../../data/aesthetic';
+import { withBase } from '../../utils/paths';
+
+const collection = getAestheticCollection('birding');
+const photos = [...getAestheticPhotosForCollection('birding')].sort((a, b) => b.sortDate.localeCompare(a.sortDate));
+---
+<Layout title={`${collection.name} | 美的历程`} description={collection.description}>
+  <header class="page-title aesthetic-page-title">
+    <p class="kicker">{collection.eyebrow}</p>
+    <h1>{collection.name}</h1>
+    <p>{collection.description}</p>
+    <a class="button-link back-button" href={withBase('/aesthetic/')}>← 返回美的历程</a>
+  </header>
+  <section class="gallery-wrap" aria-label={collection.name}>
+    <AestheticGallery photos={photos} eagerCount={2} />
+  </section>
+</Layout>

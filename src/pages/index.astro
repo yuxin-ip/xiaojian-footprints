@@ -120,7 +120,10 @@ const formatVideoDate = (timestamp: number) => new Intl.DateTimeFormat('zh-CN', 
         <a class="overview-photo-card" href={withBase(`/aesthetic/${photo.slug}/`)}>
           <img src={withBase(`/images/aesthetic/${photo.filename}`)} alt={`${photo.location} 摄影作品`} loading="lazy" />
           <span class="overview-photo-caption">
-            <strong>{photo.location}</strong>
+            <span class="overview-photo-tags">
+              <span><b>地点</b>{photo.location}</span>
+              {photo.subject && <span><b>{photo.subjectLabel ?? '鸟种'}</b>{photo.subject}</span>}
+            </span>
             <span>{photo.dateLabel}</span>
           </span>
         </a>

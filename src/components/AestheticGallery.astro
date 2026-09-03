@@ -1,0 +1,30 @@
+---
+import type { AestheticPhoto } from '../data/aesthetic';
+import { withBase } from '../utils/paths';
+
+interface Props {
+  photos: AestheticPhoto[];
+  eagerCount?: number;
+}
+
+const { photos, eagerCount = 0 } = Astro.props;
+---
+<div class="gallery-grid">
+  {photos.map((photo, index) => (
+    <a class="photo-card" href={withBase(`/aesthetic/${photo.slug}/`)} aria-label={`查看 ${photo.location}${photo.subject ? `的${photo.subject}` : ''} 摄影作品`}>
+      <img
+        src={withBase(`/images/aesthetic/${photo.filename}`)}
+        alt={`${photo.location}${photo.subject ? `，${photo.subject}` : ''} 摄影作品`}
+        loading={index < eagerCount ? 'eager' : 'lazy'}
+      />
+      <span class="photo-caption">
+        <span class="photo-tags">
+          <span class="photo-tag"><span class="photo-tag-label">地点</span>{photo.location}</span>
+          {photo.subject && <span class="photo-tag"><span class="photo-tag-label">{photo.subjectLabel ?? '鸟种'}</span>{photo.subject}</span>}
+        </span>
+        <span class="photo-info">{photo.dateLabel}</span>
+        {photo.equipment && <span class="photo-camera">{photo.equipment}</span>}
+      </span>
+    </a>
+  ))}
+</div>

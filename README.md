@@ -36,7 +36,7 @@ npm run build
 本项目也支持发布到 GitHub Pages。GitHub Actions 会在推送到 `main` 分支后自动构建，并发布到：
 
 ```text
-https://liangbandexiaojian.github.io/xiaojian-footprints/
+https://yuxin-ip.github.io/xiaojian-footprints/
 ```
 
 GitHub Pages 构建时会设置 `DEPLOY_TARGET=github-pages`，从而自动使用 `/xiaojian-footprints` 路径前缀。
